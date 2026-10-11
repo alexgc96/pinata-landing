@@ -1,0 +1,23 @@
+/* pinatas_landing — styles */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  color: #1a1a1a;
+}
+
+/* Preview banner — remove on production deploy */
+.preview-banner {
+  background: #ffcc00;
+  color: #000;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
