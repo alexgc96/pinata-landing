@@ -1,4 +1,4 @@
-# Piñatas Mexicanas — Landing Page
+# Piñatería Mexicana — Landing Page
 
 > **Preview only.** This is a design/development scaffold — not a production site and not planned to become one. Content placeholders (prices, photos, WhatsApp number) are intentional.
 
