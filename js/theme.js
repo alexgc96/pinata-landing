@@ -1,6 +1,6 @@
 // Light / dark theme toggle.
 // Loaded synchronously in <head> so the saved theme is applied before first
-// paint (no flash). Dark is the default; the choice is remembered in
+// paint (no flash). Light is the default; the choice is remembered in
 // localStorage. Self-contained: builds its own button and needs only
 // css/theme.css plus the palettes in css/style.css.
 
@@ -28,15 +28,15 @@
     try { localStorage.setItem(KEY, theme); } catch (e) { /* ignore */ }
   }
 
-  const current = () => (root.dataset.theme === 'light' ? 'light' : 'dark');
+  const current = () => (root.dataset.theme === 'dark' ? 'dark' : 'light');
 
   function apply(theme) {
     root.dataset.theme = theme;
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = theme === 'light' ? '#f4f1ea' : '#0a0a0b';
+    if (meta) meta.content = theme === 'dark' ? '#0a0a0b' : '#f4f1ea';
   }
 
-  apply(stored() || 'dark');
+  apply(stored() || 'light');
 
   const SUN =
     '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">' +
