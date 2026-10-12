@@ -1,0 +1,111 @@
+/* Party cursor + piñata stick — EXPERIMENT (feat/pinata-stick-cursor).
+   Pairs with js/party-cursor.js. To remove: delete this file, the JS file,
+   img/cursor-*.svg and the two tags in index.html. */
+
+/* ---------- Custom cursors (mouse only; JS adds body.party-on) ---------- */
+
+body.party-on:not(.party-native),
+body.party-on:not(.party-native) * {
+  cursor: none !important;
+}
+
+.party-cone,
+.party-stick {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s;
+  will-change: transform;
+}
+
+/* party cone: hotspot is the pompom at the tip */
+.party-cone img {
+  position: absolute;
+  left: -22px;
+  top: -5px;
+  max-width: none;
+  transition: scale 0.15s;
+}
+.party-cone.is-hot img { scale: 1.2; }
+
+body.party-on .party-cone { opacity: 1; }
+body.party-on.party-zone .party-cone { opacity: 0; }
+
+/* stick: hotspot is the head; the swing pivots around the grip */
+.party-stick__swing {
+  position: absolute;
+  left: 0;
+  top: 152px;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+}
+.party-stick__swing img {
+  position: absolute;
+  left: -20px;
+  top: -170px;
+  max-width: none;
+}
+
+body.party-on.party-zone .party-stick,
+.party-stick.is-flash { opacity: 1; }
+
+body.party-on.party-native .party-cone,
+body.party-on.party-native .party-stick { opacity: 0; }
+
+/* ---------- Hero piñata ---------- */
+
+.hero__art {
+  touch-action: pan-y; /* vertical swipes still scroll; horizontal swipes hit */
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.hero__pinata { -webkit-user-drag: none; }
+.hero__pinata.is-burst {
+  opacity: 0;
+  scale: 1.25;
+  transition: opacity 0.18s ease-out, scale 0.18s ease-out;
+}
+
+.hero__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 17px;
+  white-space: nowrap;
+  color: var(--muted);
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.hero__hint.is-hidden { opacity: 0; }
+
+/* ---------- FX ---------- */
+
+.party-fx {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  pointer-events: none;
+}
+
+.party-pop {
+  position: fixed;
+  z-index: 9998;
+  pointer-events: none;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1;
+  white-space: nowrap;
+}

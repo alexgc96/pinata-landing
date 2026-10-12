@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 262" width="40" height="262">
+  <defs>
+    <clipPath id="stick"><path d="M20 2 C32 2 35 10 35 20 L33 90 C32 104 26 112 25 124 L25 240 Q25 250 20 250 Q15 250 15 240 L15 124 C14 112 8 104 7 90 L5 20 C5 10 8 2 20 2 Z"/></clipPath>
+  </defs>
+  <g clip-path="url(#stick)">
+    <rect x="0" y="0" width="40" height="262" fill="#0A0A0B"/>
+    <path d="M0 22 L40 8" stroke="#E8458B" stroke-width="10"/>
+    <path d="M0 44 L40 30" stroke="#F5B82E" stroke-width="10"/>
+    <path d="M0 66 L40 52" stroke="#1FA79A" stroke-width="10"/>
+    <path d="M0 88 L40 74" stroke="#E8458B" stroke-width="10"/>
+    <path d="M0 110 L40 96" stroke="#F5B82E" stroke-width="10"/>
+    <path d="M12 150 h16 M12 160 h16 M12 170 h16" stroke="#F4F1EA" stroke-width="2" stroke-opacity=".55"/>
+  </g>
+  <path d="M20 2 C32 2 35 10 35 20 L33 90 C32 104 26 112 25 124 L25 240 Q25 250 20 250 Q15 250 15 240 L15 124 C14 112 8 104 7 90 L5 20 C5 10 8 2 20 2 Z" fill="none" stroke="#F4F1EA" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M20 248 Q10 252 7 260" fill="none" stroke="#E8458B" stroke-width="3" stroke-linecap="round"/>
+  <path d="M20 248 Q30 252 33 260" fill="none" stroke="#1FA79A" stroke-width="3" stroke-linecap="round"/>
+  <path d="M20 248 Q19 254 20 261" fill="none" stroke="#F5B82E" stroke-width="3" stroke-linecap="round"/>
+</svg>
