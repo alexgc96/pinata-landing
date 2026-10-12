@@ -1,0 +1,51 @@
+/* Language switch (ES | EU). Self-contained; colours come from the site tokens. */
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  order: 3; /* brand, nav, switch */
+}
+.lang-switch__btn {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 11px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.lang-switch__btn:hover { color: var(--ink); }
+.lang-switch__btn[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--bg);
+}
+.lang-switch__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Header order on desktop: brand | nav | theme toggle | language switch.
+   (css/theme.css gives the theme toggle order 2.) */
+
+@media (max-width: 640px) {
+  /* brand | language | theme | hamburger share one row; nav drops below.
+     The switch shrinks to one round button showing the OTHER language. */
+  .lang-switch { order: 0; padding: 0; width: 38px; height: 38px; justify-content: center; }
+  .lang-switch__btn { font-size: 11px; padding: 0; width: 100%; height: 100%; color: var(--ink); }
+  .lang-switch__btn[aria-pressed="true"] { display: none; }
+  .site-header__inner { column-gap: 10px; }
+  .brand__name { font-size: 18px; }
+}
+
+@media (max-width: 400px) {
+  .site-header__inner { column-gap: 8px; }
+  .brand { gap: 8px; }
+  .brand__name { font-size: 16px; }
+}
