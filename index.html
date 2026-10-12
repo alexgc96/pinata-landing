@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- PREVIEW: noindex until production domain is live -->
   <meta name="robots" content="noindex, nofollow" />
-  <title>Piñatas Claudia Garate — Bilbao</title>
+  <title>Piñatas Mexicanas — Hechas a mano en Bilbao</title>
+  <meta name="description" content="Piñatas artesanales de papel de seda y flecos, para cumpleaños, bodas y cualquier excusa para romper algo con cariño." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -15,25 +19,169 @@
     PREVIEW — sitio en construcción / site under construction
   </div>
 
-  <header>
-    <h1>Piñatas Claudia Garate</h1>
-    <p>Piñatas artesanales · Bilbao</p>
+  <!-- NAV -->
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="#inicio">
+        <img class="brand__mark" src="img/logo-mark.svg" width="46" height="46" alt="" />
+        <span class="brand__name">Piñatas <em>Mexicanas</em></span>
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav id="main-nav" class="nav" aria-label="Principal">
+        <a class="nav__link" href="#pinatas">Piñatas</a>
+        <a class="nav__link" href="#medida">A medida</a>
+        <a class="nav__link" href="#como">Cómo pedir</a>
+        <a class="btn btn--outline" href="#contacto">Pedir presupuesto</a>
+      </nav>
+    </div>
   </header>
 
   <main>
 
-    <section id="galeria">
-      <!-- gallery goes here -->
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow"><span class="dot dot--accent"></span>Hechas a mano · Bilbao</p>
+          <h1 class="hero__title">Piñatas que hacen la <em>fiesta</em></h1>
+          <p class="hero__lead">Piñatas artesanales de papel de seda y flecos, para cumpleaños, bodas y cualquier excusa para romper algo con cariño.</p>
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#contacto">Pedir mi piñata</a>
+            <a class="btn btn--ghost" href="#pinatas">Ver modelos</a>
+          </div>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <div class="hero__ring"></div>
+          <div class="hero__string"></div>
+          <img class="hero__pinata" src="img/pinata-hero.svg" alt="" />
+          <span class="confetti confetti--pink"></span>
+          <span class="confetti confetti--yellow"></span>
+          <span class="confetti confetti--teal"></span>
+        </div>
+      </div>
     </section>
 
-    <section id="contacto">
-      <!-- contact form goes here — disabled on preview -->
+    <!-- FLECOS -->
+    <div class="fringe" aria-hidden="true">
+      <img src="img/flecos.svg" alt="" />
+    </div>
+
+    <!-- PRODUCTOS -->
+    <section id="pinatas" class="section">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot dot--pink"></span>Colección</p>
+        <h2 class="section__title">Nuestras piñatas</h2>
+        <div class="products">
+
+          <article class="product">
+            <div class="product__art"><img src="img/product-estrella.svg" width="240" height="240" alt="Ilustración de una piñata de estrella de siete picos" /></div>
+            <h3 class="product__name">Estrella clásica</h3>
+            <p class="product__desc">La de siete picos de toda la vida, en los colores que tú elijas.</p>
+            <div class="product__foot">
+              <span class="muted">Desde [PRECIO]</span>
+              <a class="lnk lnk--underline" href="#contacto">Lo quiero →</a>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product__art"><img src="img/product-flecos.svg" width="240" height="240" alt="Ilustración de una piñata redonda de flecos" /></div>
+            <h3 class="product__name">Redonda de flecos</h3>
+            <p class="product__desc">Capas de papel de seda cortadas a mano, una por una.</p>
+            <div class="product__foot">
+              <span class="muted">Desde [PRECIO]</span>
+              <a class="lnk lnk--underline" href="#contacto">Lo quiero →</a>
+            </div>
+          </article>
+
+          <article id="medida" class="product">
+            <div class="product__art product__art--inline">
+              <svg viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="112" fill="none" stroke="#F4F1EA" stroke-opacity=".5" stroke-width="2" stroke-dasharray="1.5 11" stroke-linecap="round"></circle><path d="M150 74 l7 19 l19 7 l-19 7 l-7 19 l-7 -19 l-19 -7 l19 -7 Z" fill="#1FA79A" stroke="#F4F1EA" stroke-width="2.5" stroke-linejoin="round"></path><path d="M82 112 l4 11 l11 4 l-11 4 l-4 11 l-4 -11 l-11 -4 l11 -4 Z" fill="none" stroke="#F4F1EA" stroke-width="2" stroke-linejoin="round"></path><path d="M220 128 l4 11 l11 4 l-11 4 l-4 11 l-4 -11 l-11 -4 l11 -4 Z" fill="none" stroke="#F4F1EA" stroke-width="2" stroke-linejoin="round"></path><text x="150" y="214" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-style="italic" font-weight="300" font-size="32" fill="#F4F1EA">tu idea aquí</text></svg>
+            </div>
+            <h3 class="product__name">A medida</h3>
+            <p class="product__desc">Cuéntanos tu idea (un personaje, un número, una mascota) y la dibujamos juntos.</p>
+            <div class="product__foot">
+              <span class="muted">Presupuesto sin compromiso</span>
+              <a class="lnk lnk--underline" href="#contacto">Cuéntanos →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO PEDIR -->
+    <section id="como" class="section section--ruled">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot dot--yellow"></span>Sin complicaciones</p>
+        <h2 class="section__title">Así de fácil</h2>
+        <ol class="steps">
+          <li class="step">
+            <div class="step__head"><span class="step__num">01</span><span class="dot dot--pink dot--lg"></span></div>
+            <h3 class="step__title">Cuéntanos la fiesta</h3>
+            <p class="step__desc">Ocasión, tema, colores y para cuántos invitados.</p>
+          </li>
+          <li class="step">
+            <div class="step__head"><span class="step__num">02</span><span class="dot dot--yellow dot--lg"></span></div>
+            <h3 class="step__title">Elegimos el diseño</h3>
+            <p class="step__desc">Te enseñamos un boceto y ajustamos lo que haga falta.</p>
+          </li>
+          <li class="step">
+            <div class="step__head"><span class="step__num">03</span><span class="dot dot--teal dot--lg"></span></div>
+            <h3 class="step__title">La hacemos a mano</h3>
+            <p class="step__desc">Papel, cartón y flecos, capa por capa. Tú solo la cuelgas.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TALLER -->
+    <section id="taller" class="section section--ruled">
+      <div class="wrap">
+        <p class="eyebrow"><span class="dot dot--teal"></span>Papel, tijeras y pegamento</p>
+        <h2 class="section__title">Del taller</h2>
+        <div class="workshop">
+          <figure class="shot">
+            <div class="shot__ph">[FOTO]</div>
+            <figcaption>cortando flecos</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="shot__ph">[FOTO]</div>
+            <figcaption>una estrella en proceso</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="shot__ph">[FOTO]</div>
+            <figcaption>lista para la fiesta</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contacto" class="cta">
+      <div class="wrap cta__inner">
+        <img class="cta__art" src="img/pinata-cta.svg" alt="" />
+        <div class="cta__copy">
+          <h2 class="cta__title">¿Tienes una fiesta <em>en mente?</em></h2>
+          <p class="cta__lead">Escríbenos por WhatsApp y te respondemos con ideas y presupuesto.</p>
+          <!-- TODO: point at https://wa.me/<numero> once the WhatsApp number is confirmed; contact form comes with the PHP phase -->
+          <a class="btn btn--solid btn--lg" href="#contacto">Escribir por WhatsApp</a>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <footer>
-    <p>&copy; 2026 Claudia Garate</p>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <span class="site-footer__brand">Piñatas <em>Mexicanas</em></span>
+      <span>[CIUDAD] · [EMAIL] · [WHATSAPP]</span>
+      <span>&copy; Piñatas Mexicanas</span>
+    </div>
   </footer>
 
   <script src="js/main.js"></script>
