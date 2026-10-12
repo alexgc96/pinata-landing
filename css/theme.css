@@ -1,0 +1,66 @@
+/* Light / dark theme — toggle button and art adjustments.
+   Palettes live in css/style.css (:root and :root[data-theme="dark"]);
+   js/theme.js sets data-theme and builds the button. */
+
+/* ---------- Toggle button ---------- */
+
+.site-header__inner .brand { margin-right: auto; }
+
+.theme-toggle {
+  flex: none;
+  order: 2; /* desktop: after the nav; mobile resets this below */
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.theme-toggle:hover { border-color: var(--ink); }
+.theme-toggle svg { display: block; }
+
+/* the party cursor hides the native cursor site-wide; keep the button usable */
+body.party-on .theme-toggle { cursor: none; }
+
+@media (max-width: 640px) {
+  .theme-toggle { order: 0; width: 38px; height: 38px; }
+  /* brand + toggle + burger must share one row on a 360-390px phone */
+  .site-header__inner { column-gap: 14px; }
+  .brand { gap: 10px; }
+  .brand__mark { width: 38px; height: 38px; }
+  .brand__name { font-size: 20px; }
+}
+
+/* ---------- Colour fade when switching ---------- */
+
+.theme-fading,
+.theme-fading *,
+.theme-fading *::before,
+.theme-fading *::after {
+  transition: background-color 0.3s ease, color 0.3s ease,
+              border-color 0.3s ease, fill 0.3s ease, stroke 0.3s ease !important;
+}
+
+/* ---------- Illustrations on paper ----------
+   The SVG art is drawn for dark (cream lines, near-black fills) and is loaded
+   through <img>, which can't read the theme variables. img/light/ holds the
+   same files with cream and near-black swapped (accent colours untouched);
+   on light we swap them in with CSS. Keep both folders in step when adding art. */
+
+:root:not([data-theme="dark"]) img[src$="img/cursor-cone.svg"] { content: url("../img/light/cursor-cone.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/cursor-stick.svg"] { content: url("../img/light/cursor-stick.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/flecos.svg"] { content: url("../img/light/flecos.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/logo-mark.svg"] { content: url("../img/light/logo-mark.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/pinata-cta.svg"] { content: url("../img/light/pinata-cta.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/pinata-hero.svg"] { content: url("../img/light/pinata-hero.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/product-estrella.svg"] { content: url("../img/light/product-estrella.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/product-flecos.svg"] { content: url("../img/light/product-flecos.svg"); }
+
+/* the inline "A medida" star uses hard-coded cream strokes/text */
+:root:not([data-theme="dark"]) .product__art--inline [stroke="#F4F1EA"] { stroke: var(--ink); }
+:root:not([data-theme="dark"]) .product__art--inline text[fill="#F4F1EA"] { fill: var(--ink); }
