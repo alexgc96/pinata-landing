@@ -28,7 +28,7 @@ No bundler. No framework. No dependencies.
 --teal:   #1fa79a
 ```
 
-Illustrations in `img/` are drawn for dark; `img/light/` has the light versions (cream/near-black swapped, and the hero, CTA and star piñatas get coloured fills), swapped in by `css/theme.css`. The logo mark stays line-only (cream on dark, black on light) with coloured spikes and a multi-colour centre. When adding art, add both versions plus a rule in `css/theme.css`.
+Illustrations in `img/` are drawn for dark; `img/light/` has the light versions (cream swapped for dark grey #2A2A2D, and the hero, CTA and star piñatas get coloured fills), swapped in by `css/theme.css`. The logo mark stays line-only (cream on dark, dark grey on light) with coloured spikes and a multi-colour centre. When adding art, add both versions plus a rule in `css/theme.css`.
 
 ## Local dev
 
