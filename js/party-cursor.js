@@ -291,26 +291,24 @@
   function breakPinata(c) {
     broken = true;
     burst(c.x, c.y, 110, { radial: true, speed: 1.15, candy: 0.3 });
-    pinata.animate(
-      [{ scale: 1, opacity: 1 }, { scale: 1.25, opacity: 0 }],
-      { duration: 180, easing: 'ease-out', fill: 'forwards' }
-    );
+    pinata.classList.add('is-burst');
     setTimeout(rebuildPinata, 1700);
   }
 
+  // Back to a fresh piñata: every bit of state is reset here, and nothing
+  // depends on an animation callback firing (those proved unreliable).
   function rebuildPinata() {
-    pinata.getAnimations().forEach(a => a.cancel());
+    pinata.classList.remove('is-burst');
     spring.a = spring.v = jolt = 0;
+    hits = 0;
+    hitsToBreak = Math.floor(rand(6, 9));
     renderPinata();
     pinata.animate(
       [{ translate: '0 -90px', opacity: 0, scale: 0.9 }, { translate: '0 0', opacity: 1, scale: 1 }],
       { duration: 700, easing: 'cubic-bezier(.34, 1.56, .64, 1)' }
-    ).onfinish = () => {
-      hits = 0;
-      hitsToBreak = Math.floor(rand(6, 9));
-      broken = false;
-    };
+    );
     setTimeout(() => { spring.v = -90; wake(); }, 450); // little wobble as it lands
+    setTimeout(() => { broken = false; }, 700);
   }
 
   // ---------- Mouse ----------

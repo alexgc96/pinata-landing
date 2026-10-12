@@ -65,6 +65,11 @@ body.party-on.party-native .party-stick { opacity: 0; }
   -webkit-tap-highlight-color: transparent;
 }
 .hero__pinata { -webkit-user-drag: none; }
+.hero__pinata.is-burst {
+  opacity: 0;
+  scale: 1.25;
+  transition: opacity 0.18s ease-out, scale 0.18s ease-out;
+}
 
 .hero__hint {
   position: absolute;
