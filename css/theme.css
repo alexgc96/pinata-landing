@@ -1,5 +1,5 @@
 /* Light / dark theme — toggle button and art adjustments.
-   Palettes live in css/style.css (:root = dark, :root[data-theme="light"]);
+   Palettes live in css/style.css (:root and :root[data-theme="dark"]);
    js/theme.js sets data-theme and builds the button. */
 
 /* ---------- Toggle button ---------- */
@@ -52,15 +52,15 @@ body.party-on .theme-toggle { cursor: none; }
    same files with cream and near-black swapped (accent colours untouched);
    on light we swap them in with CSS. Keep both folders in step when adding art. */
 
-:root[data-theme="light"] img[src$="img/cursor-cone.svg"] { content: url("../img/light/cursor-cone.svg"); }
-:root[data-theme="light"] img[src$="img/cursor-stick.svg"] { content: url("../img/light/cursor-stick.svg"); }
-:root[data-theme="light"] img[src$="img/flecos.svg"] { content: url("../img/light/flecos.svg"); }
-:root[data-theme="light"] img[src$="img/logo-mark.svg"] { content: url("../img/light/logo-mark.svg"); }
-:root[data-theme="light"] img[src$="img/pinata-cta.svg"] { content: url("../img/light/pinata-cta.svg"); }
-:root[data-theme="light"] img[src$="img/pinata-hero.svg"] { content: url("../img/light/pinata-hero.svg"); }
-:root[data-theme="light"] img[src$="img/product-estrella.svg"] { content: url("../img/light/product-estrella.svg"); }
-:root[data-theme="light"] img[src$="img/product-flecos.svg"] { content: url("../img/light/product-flecos.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/cursor-cone.svg"] { content: url("../img/light/cursor-cone.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/cursor-stick.svg"] { content: url("../img/light/cursor-stick.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/flecos.svg"] { content: url("../img/light/flecos.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/logo-mark.svg"] { content: url("../img/light/logo-mark.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/pinata-cta.svg"] { content: url("../img/light/pinata-cta.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/pinata-hero.svg"] { content: url("../img/light/pinata-hero.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/product-estrella.svg"] { content: url("../img/light/product-estrella.svg"); }
+:root:not([data-theme="dark"]) img[src$="img/product-flecos.svg"] { content: url("../img/light/product-flecos.svg"); }
 
 /* the inline "A medida" star uses hard-coded cream strokes/text */
-:root[data-theme="light"] .product__art--inline [stroke="#F4F1EA"] { stroke: var(--ink); }
-:root[data-theme="light"] .product__art--inline text[fill="#F4F1EA"] { fill: var(--ink); }
+:root:not([data-theme="dark"]) .product__art--inline [stroke="#F4F1EA"] { stroke: var(--ink); }
+:root:not([data-theme="dark"]) .product__art--inline text[fill="#F4F1EA"] { fill: var(--ink); }
