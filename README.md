@@ -10,7 +10,7 @@ Handcrafted piñata studio landing page. Light "paper" theme by default with a d
 |---|---|
 | Markup | Semantic HTML5 |
 | Styles | Vanilla CSS (custom properties, CSS Grid, Flexbox) |
-| Scripts | Vanilla JS (sticky header, mobile nav toggle) |
+| Scripts | Vanilla JS (sticky header, mobile nav toggle, language switch) |
 | Fonts | [Fraunces](https://fonts.google.com/specimen/Fraunces) + [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts |
 | Deploy | GitHub Pages (GitHub Actions) |
 
@@ -40,6 +40,10 @@ open index.html
 npx serve .
 ```
 
+## Languages
+
+Spanish is the default and lives in `index.html`. Basque (`eu`) is a first pass in `js/lang/eu.js`, applied by `js/i18n.js` through `data-i18n` attributes. The ES | EU switch in the header remembers the choice in `localStorage`; `?lang=eu` opens the page in Basque directly. Missing keys fall back to Spanish. The Basque copy has not been reviewed by a native speaker yet.
+
 ## Deploy
 
 Pushes to `main` trigger the GitHub Actions workflow at `.github/workflows/deploy.yml`, which deploys the `./` directory to GitHub Pages.
@@ -57,9 +61,16 @@ Live URL: `https://alexgc96.github.io/pinata-landing/`
 pinata-landing/
 ├── index.html
 ├── css/
-│   └── style.css
+│   ├── style.css
+│   ├── party-cursor.css
+│   └── lang-switch.css
 ├── js/
-│   └── main.js
+│   ├── main.js
+│   ├── party-cursor.js
+│   ├── i18n.js
+│   └── lang/
+│       ├── es.js   (strings built in JS)
+│       └── eu.js   (Basque)
 └── img/
     ├── logo-mark.svg
     ├── flecos.svg

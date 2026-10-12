@@ -48,10 +48,14 @@
 
   const hint = document.createElement('p');
   hint.className = 'hero__hint';
+  // Hint copy comes from js/i18n.js so it follows the language switch.
+  let hintIsTouch = !fineHover.matches;
   const setHint = touch => {
-    hint.textContent = touch ? 'Toca o desliza la piñata ✦' : 'Dale a la piñata ✦';
+    hintIsTouch = touch;
+    hint.textContent = window.PinataI18n.t(touch ? 'hero.hint.touch' : 'hero.hint.mouse');
   };
-  setHint(!fineHover.matches);
+  setHint(hintIsTouch);
+  document.addEventListener('pinata:languagechange', () => setHint(hintIsTouch));
 
   document.body.append(cone, stick, canvas);
   art.append(hint);
