@@ -2,16 +2,16 @@
    Translated from the "Landing page" board of the Piñata Paper & Fringe design canvas. */
 
 :root {
-  /* Light "paper" theme is the default; dark is opt-in via
-     <html data-theme="dark"> (see js/theme.js + css/theme.css). */
-  color-scheme: light;
-  --bg: #f4f1ea;
-  --ink: #0a0a0b;
-  --muted: #5e5a53;
-  --line: rgba(10, 10, 11, 0.18);
-  --header-bg: rgba(244, 241, 234, 0.78);
-  --header-bg-scrolled: rgba(244, 241, 234, 0.94);
-  --stripe: rgba(10, 10, 11, 0.045);
+  /* Dark is the default; the light "paper" theme is opt-in via
+     <html data-theme="light"> (see js/theme.js + css/theme.css). */
+  color-scheme: dark;
+  --bg: #0a0a0b;
+  --ink: #f4f1ea;
+  --muted: #a6a29a;
+  --line: rgba(244, 241, 234, 0.18);
+  --header-bg: rgba(10, 10, 11, 0.72);
+  --header-bg-scrolled: rgba(10, 10, 11, 0.92);
+  --stripe: rgba(244, 241, 234, 0.04);
 
   --pink: #e8458b;
   --yellow: #f5b82e;
@@ -25,15 +25,15 @@
   --maxw: 1200px;
 }
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #0a0a0b;
-  --ink: #f4f1ea;
-  --muted: #a6a29a;
-  --line: rgba(244, 241, 234, 0.18);
-  --header-bg: rgba(10, 10, 11, 0.72);
-  --header-bg-scrolled: rgba(10, 10, 11, 0.92);
-  --stripe: rgba(244, 241, 234, 0.04);
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f1ea;
+  --ink: #0a0a0b;
+  --muted: #5e5a53;
+  --line: rgba(10, 10, 11, 0.18);
+  --header-bg: rgba(244, 241, 234, 0.78);
+  --header-bg-scrolled: rgba(244, 241, 234, 0.94);
+  --stripe: rgba(10, 10, 11, 0.045);
 }
 
 *, *::before, *::after {
