@@ -4,7 +4,7 @@
 // Anything missing here falls back to Spanish. See basque-review.md for notes.
 window.PinataStrings = window.PinataStrings || {};
 window.PinataStrings.eu = {
-  'meta.title': 'Piñatas Mexicanas — Eskuz egindakoak Bilbon',
+  'meta.title': 'Piñatería Mexicana — Eskuz egindakoak Bilbon',
   'meta.description': 'Zetazko paperez eta xingolez eskuz egindako piñatak, urtebetetzeetarako, ezkontzetarako eta zerbait maitasunez apurtzeko edozein aitzakiarako.',
 
   'nav.toggle': 'Ireki menua',
