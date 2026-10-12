@@ -31,21 +31,21 @@
   outline-offset: 2px;
 }
 
-/* Keep the nav and the switch together on the right on desktop. */
-.site-header__inner .nav { order: 2; margin-left: auto; }
+/* Header order on desktop: brand | nav | theme toggle | language switch.
+   (css/theme.css gives the theme toggle order 2.) */
 
 @media (max-width: 640px) {
-  /* brand | switch | hamburger on one row, nav drops below */
-  .site-header__inner { flex-wrap: wrap; column-gap: 12px; }
-  .brand { gap: 10px; margin-right: auto; }
-  .brand__mark { width: 38px; height: 38px; }
-  .brand__name { font-size: 21px; }
-  .lang-switch { order: 1; padding: 2px; }
-  .lang-switch__btn { font-size: 11px; padding: 5px 8px; }
-  .nav-toggle { order: 2; }
-  .site-header__inner .nav { order: 3; margin-left: 0; }
+  /* brand | language | theme | hamburger share one row; nav drops below.
+     The switch shrinks to one round button showing the OTHER language. */
+  .lang-switch { order: 0; padding: 0; width: 38px; height: 38px; justify-content: center; }
+  .lang-switch__btn { font-size: 11px; padding: 0; width: 100%; height: 100%; color: var(--ink); }
+  .lang-switch__btn[aria-pressed="true"] { display: none; }
+  .site-header__inner { column-gap: 10px; }
+  .brand__name { font-size: 18px; }
 }
 
-@media (max-width: 380px) {
-  .brand__name { font-size: 18px; }
+@media (max-width: 400px) {
+  .site-header__inner { column-gap: 8px; }
+  .brand { gap: 8px; }
+  .brand__name { font-size: 16px; }
 }

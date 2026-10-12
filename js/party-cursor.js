@@ -23,7 +23,9 @@
       ? getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#f4f1ea'
       : c;
   };
-  const POPS = ['¡Pum!', '¡Toma!', '¡Zas!', '¡Ole!', '¡Más fuerte!', '¡Otra!'];
+  // Hit words come from js/i18n.js (keys pop.1 … pop.6, pop.burst) so they follow the language switch.
+  const say = key => window.PinataI18n.t(key);
+  const popWord = () => say('pop.' + (1 + Math.floor(Math.random() * 6)));
   const rand = (a, b) => a + Math.random() * (b - a);
   const pick = list => list[Math.floor(Math.random() * list.length)];
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
@@ -286,14 +288,14 @@
 
     if (reduced()) {
       pinata.animate([{ filter: 'brightness(1.8)' }, { filter: 'none' }], { duration: 180 });
-      pop(x, y, pick(POPS));
+      pop(x, y, popWord());
       return;
     }
 
     spring.v += -dir * power * rand(170, 210);
     jolt = Math.min(1, jolt + 0.7 * power);
     burst(x, y, Math.round(12 + 8 * power), { dir, speed: power });
-    pop(x, y, hits >= hitsToBreak ? '¡Fiesta!' : pick(POPS));
+    pop(x, y, hits >= hitsToBreak ? say('pop.burst') : popWord());
     wake();
 
     if (hits >= hitsToBreak) breakPinata(c);

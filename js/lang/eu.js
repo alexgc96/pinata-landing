@@ -22,6 +22,15 @@ window.PinataStrings.eu = {
   'hero.hint.mouse': 'Jo piñata ✦',
   'hero.hint.touch': 'Ukitu edo irristatu piñata ✦',
 
+  'pop.1': 'Pum!',
+  'pop.2': 'Hartu!',
+  'pop.3': 'Zas!',
+  'pop.4': 'Ole!',
+  'pop.5': 'Gogorrago!',
+  'pop.6': 'Berriro!',
+  'pop.burst': 'Festa!',
+
+
   'products.eyebrow': 'Bilduma',
   'products.title': 'Gure piñatak',
   'price.from': 'Hasierako prezioa: [PRECIO]',

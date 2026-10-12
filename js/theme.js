@@ -11,6 +11,7 @@
   // Button text per page language. Add a key here when a new language ships.
   const LABELS = {
     es: { toDark: 'Cambiar a modo oscuro', toLight: 'Cambiar a modo claro' },
+    eu: { toDark: 'Aldatu modu ilunera', toLight: 'Aldatu modu argira' },
   };
   const labels = () => LABELS[(root.lang || 'es').slice(0, 2)] || LABELS.es;
 
@@ -71,6 +72,8 @@
     });
 
     sync();
+    // js/i18n.js fires this when the visitor switches language
+    document.addEventListener('pinata:languagechange', sync);
     const burger = bar.querySelector('.nav-toggle');
     bar.insertBefore(btn, burger || bar.querySelector('.nav'));
   }
