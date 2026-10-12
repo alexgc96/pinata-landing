@@ -15,7 +15,14 @@
   const fineHover = matchMedia('(hover: hover) and (pointer: fine)');
 
   const BASE_ANGLE = -3; // matches .hero__pinata's resting rotate()
-  const COLORS = ['#e8458b', '#f5b82e', '#1fa79a', '#f4f1ea'];
+  const COLORS = ['#e8458b', '#f5b82e', '#1fa79a', 'ink'];
+  // 'ink' follows the active theme (cream on dark, near-black on light)
+  const confettiColor = () => {
+    const c = pick(COLORS);
+    return c === 'ink'
+      ? getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#f4f1ea'
+      : c;
+  };
   const POPS = ['¡Pum!', '¡Toma!', '¡Zas!', '¡Ole!', '¡Más fuerte!', '¡Otra!'];
   const rand = (a, b) => a + Math.random() * (b - a);
   const pick = list => list[Math.floor(Math.random() * list.length)];
@@ -79,7 +86,7 @@
         w: isCandy ? rand(11, 15) : rand(7, 12),
         h: isCandy ? rand(7, 9) : rand(3.5, 5.5),
         shape: isCandy ? 'candy' : Math.random() < 0.3 ? 'dot' : 'strip',
-        color: pick(COLORS),
+        color: confettiColor(),
         age: 0,
         life: rand(1.1, 2),
       });
