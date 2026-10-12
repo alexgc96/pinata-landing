@@ -53,6 +53,11 @@ ol { list-style: none; }
   outline-offset: 3px;
 }
 
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
 .wrap {
   max-width: var(--maxw);
   margin: 0 auto;
