@@ -227,6 +227,12 @@ ol { list-style: none; }
 }
 .nav__link:hover { color: var(--ink); }
 
+/* the nav grew a fifth item; tighten the bar so it keeps to one row on small laptops */
+@media (max-width: 1180px) {
+  .site-header__inner { column-gap: 20px; }
+  .nav { column-gap: 22px; }
+}
+
 /* ---------- Hero ---------- */
 
 .hero__inner {
@@ -481,6 +487,8 @@ ol { list-style: none; }
   letter-spacing: 0.2em;
   color: var(--muted);
 }
+.workshop__more { margin-top: 48px; }
+
 .shot figcaption {
   margin-top: 14px;
   font-family: var(--serif);
