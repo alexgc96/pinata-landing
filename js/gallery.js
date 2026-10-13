@@ -29,10 +29,15 @@
     show(i);
     root.classList.add('lightbox-open');
     dialog.showModal();
+    // the party cursor (js/party-cursor.js) must move into the top layer to stay visible
+    document.dispatchEvent(new CustomEvent('pinata:toplayer', { detail: { host: dialog } }));
   }
 
   buttons.forEach((btn, i) => btn.addEventListener('click', () => open(i)));
-  dialog.addEventListener('close', () => root.classList.remove('lightbox-open'));
+  dialog.addEventListener('close', () => {
+    root.classList.remove('lightbox-open');
+    document.dispatchEvent(new CustomEvent('pinata:toplayer', { detail: { host: null } }));
+  });
 
   dialog.querySelector('.lightbox__close').addEventListener('click', () => dialog.close());
   dialog.querySelector('.lightbox__prev').addEventListener('click', () => show(index - 1));

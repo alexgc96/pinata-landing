@@ -49,9 +49,6 @@
   color: var(--muted);
 }
 
-/* the party cursor is landing-only, but keep the native cursor honest if it is ever loaded */
-body.party-on .work__open { cursor: none; }
-
 /* Current page marker in the nav */
 .nav__link.is-current { color: var(--ink); }
 
