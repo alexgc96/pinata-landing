@@ -4,11 +4,12 @@
 //         you can swing (click) at the piñata.
 // Touch:  no cursor — tap or swipe across the hero piñata to hit it.
 // Reduced motion: cursors stay, but no trail, spring, particles or break.
+// Pages without the hero (portafolio.html) get just the cone, trail and click confetti.
 
 (() => {
   const art    = document.querySelector('.hero__art');
   const pinata = document.querySelector('.hero__pinata');
-  if (!art || !pinata) return;
+  const hero = !!(art && pinata);
 
   const reducedQuery = matchMedia('(prefers-reduced-motion: reduce)');
   const reduced = () => reducedQuery.matches;
@@ -59,8 +60,16 @@
   setHint(hintIsTouch);
   document.addEventListener('pinata:languagechange', () => setHint(hintIsTouch));
 
-  document.body.append(cone, stick, canvas);
-  art.append(hint);
+  const fxParts = [cone, stick, canvas];
+  document.body.append(...fxParts);
+
+  // A modal <dialog> paints in the browser's top layer, above everything in the
+  // page, so while one is open the cursor parts move inside it (js/gallery.js
+  // announces this) and come back to <body> on close.
+  document.addEventListener('pinata:toplayer', e => {
+    (e.detail.host || document.body).append(...fxParts);
+  });
+  if (hero) art.append(hint);
 
   // ---------- Particles ----------
 
@@ -164,6 +173,7 @@
   }
 
   function renderPinata() {
+    if (!hero) return;
     pinata.style.transform =
       `rotate(${BASE_ANGLE + spring.a}deg) scale(${1 + 0.035 * jolt}, ${1 - 0.03 * jolt})`;
   }
@@ -190,6 +200,7 @@
   }
 
   function updateZone() {
+    if (!hero) return;
     const r = art.getBoundingClientRect();
     mouse.zone = mouse.x >= r.left && mouse.x <= r.right && mouse.y >= r.top && mouse.y <= r.bottom;
     document.body.classList.toggle('party-zone', mouse.zone);
@@ -387,6 +398,7 @@
   }
 
   function inArt(x, y) {
+    if (!hero) return false;
     const r = art.getBoundingClientRect();
     return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
   }
