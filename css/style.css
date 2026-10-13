@@ -44,6 +44,10 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Sticky header height; main.js keeps this in sync with the real value.
+     Anchor jumps stop just below the header instead of under it. */
+  --header-h: 100px;
+  scroll-padding-top: var(--header-h);
 }
 
 @media (prefers-reduced-motion: no-preference) {
