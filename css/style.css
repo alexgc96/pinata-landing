@@ -559,6 +559,11 @@ ol { list-style: none; }
   font-size: 24px;
   color: var(--ink);
 }
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
 
 /* ---------- Small screens ---------- */
 

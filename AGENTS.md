@@ -6,7 +6,7 @@ Static, no-build landing site for "Piñatería Mexicana" (handmade piñata studi
 
 Preview-only site: `noindex` meta tags and preview banner are intentional and permanent.
 
-Pages: `index.html` (landing) and `portafolio.html` (photo portfolio + lightbox).
+Pages: `index.html` (landing), `portafolio.html` (photo portfolio + lightbox), and the legal pages `aviso-legal.html` and `politica-privacidad.html` (text only; no `gallery.js` or `party-cursor.js`).
 
 ## Essential commands
 
@@ -20,7 +20,7 @@ Pages: `index.html` (landing) and `portafolio.html` (photo portfolio + lightbox)
 - `css/style.css` — tokens/palettes (`:root`, `:root[data-theme="dark"]`), layout
 - `css/theme.css` — theme toggle styles + illustration swap rules
 - `css/fonts.css` — `@font-face` rules for self-hosted Fraunces + Inter (files in `fonts/`, latin + latin-ext only)
-- `css/party-cursor.css`, `css/lang-switch.css`, `css/portfolio.css`
+- `css/party-cursor.css`, `css/lang-switch.css`, `css/portfolio.css`, `css/legal.css` (legal pages only)
 - `js/theme.js` — synchronous head script: applies saved theme before paint, builds toggle button
 - `js/main.js` — sticky header height sync, mobile nav toggle
 - `js/i18n.js` — language switch (Spanish default, Basque), `data-i18n` / `data-i18n-attr`
