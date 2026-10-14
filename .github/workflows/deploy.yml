@@ -23,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Leave internal docs out of the published site
+        run: rm -rf docs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
