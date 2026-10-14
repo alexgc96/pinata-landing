@@ -11,7 +11,7 @@ Handcrafted piñata studio landing page. Light "paper" theme by default with a d
 | Markup | Semantic HTML5 |
 | Styles | Vanilla CSS (custom properties, CSS Grid, Flexbox) |
 | Scripts | Vanilla JS (sticky header, mobile nav toggle, language switch) |
-| Fonts | [Fraunces](https://fonts.google.com/specimen/Fraunces) + [Inter](https://fonts.google.com/specimen/Inter) via Google Fonts |
+| Fonts | [Fraunces](https://fonts.google.com/specimen/Fraunces) + [Inter](https://fonts.google.com/specimen/Inter), self-hosted in `fonts/` (no third-party font requests) |
 | Deploy | GitHub Pages (GitHub Actions) |
 
 No bundler. No framework. No dependencies.
