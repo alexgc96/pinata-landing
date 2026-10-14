@@ -12,6 +12,9 @@
 
 .legal__body { max-width: 720px; }
 
+.legal__eu-only { display: none; }
+:root[lang="eu"] .legal__eu-only { display: block; }
+
 .legal__body h2 {
   margin: 48px 0 16px;
   font-family: var(--serif);

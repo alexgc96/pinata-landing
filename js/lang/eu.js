@@ -178,5 +178,7 @@ window.PinataStrings.eu = {
   'privacidad.s10.title': '10. Politika honen aldaketak',
   'privacidad.s10.p': 'Politika hau eguneratu dezakegu web-orria edo araudia aldatzen denean. Goiko aldean beti adieraziko dugu azken bertsioaren data.',
 
+  'legal.precedence': 'Interpretazio-arazorik izanez gero, gaztelaniazko testuak lehentasuna du.',
+
   'lang.label': 'Hizkuntza'
 };
