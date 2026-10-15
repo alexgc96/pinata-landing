@@ -1,28 +1,73 @@
 // Portfolio lightbox — native <dialog>, no library.
-// Each .work__open button carries the full (uncropped) image in data-full;
-// the caption and alt text are read from the figure, so they follow the language switch.
+// Each .work is one piñata. Its cover button (.work__open) and any extra .work__angle
+// spans carry a photo in data-full/-w/-h plus data-thumb; the alt text and title are read
+// from the markup, so they follow the language switch.
+// Arrows step through every photo, with a piñata's angles kept side by side.
 
 (() => {
   const dialog = document.querySelector('.lightbox');
-  const buttons = [...document.querySelectorAll('.work__open')];
-  if (!dialog || !buttons.length || typeof dialog.showModal !== 'function') return;
+  const works = [...document.querySelectorAll('.work')];
+  if (!dialog || !works.length || typeof dialog.showModal !== 'function') return;
 
   const img = dialog.querySelector('.lightbox__img');
-  const caption = dialog.querySelector('.lightbox__caption');
+  const figure = dialog.querySelector('.lightbox__figure');
+  const title = dialog.querySelector('.lightbox__title');
+  const count = dialog.querySelector('.lightbox__count');
+  const thumbs = dialog.querySelector('.lightbox__thumbs');
   const root = document.documentElement;
+  const t = key => (window.PinataI18n ? window.PinataI18n.t(key) : '');
+
+  // Flat list of photos, grouped by piñata: [{ work, el, first, pos, size }]
+  const slides = [];
+  const firstOf = new Map(); // .work -> index of its first slide
+  works.forEach(work => {
+    const els = [...work.querySelectorAll('[data-full]')];
+    firstOf.set(work, slides.length);
+    els.forEach((el, pos) => slides.push({ work, el, first: slides.length - pos, pos, size: els.length }));
+  });
+
+  const altOf = el => (el.matches('button') ? el.querySelector('img').alt : el.dataset.alt);
+
   let index = 0;
 
+  function renderThumbs(s) {
+    thumbs.replaceChildren();
+    thumbs.hidden = s.size < 2;
+    figure.classList.toggle('has-thumbs', s.size > 1);
+    if (s.size < 2) return;
+    for (let i = 0; i < s.size; i++) {
+      const target = slides[s.first + i];
+      const li = document.createElement('li');
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'lightbox__thumb';
+      b.setAttribute('aria-label', `${t('lightbox.photo')} ${i + 1} / ${s.size}`);
+      if (i === s.pos) b.setAttribute('aria-current', 'true');
+      const im = document.createElement('img');
+      im.src = target.el.dataset.thumb;
+      im.alt = '';
+      im.width = 44;
+      im.height = 55;
+      b.appendChild(im);
+      b.addEventListener('click', () => show(s.first + i));
+      li.appendChild(b);
+      thumbs.appendChild(li);
+    }
+    thumbs.setAttribute('aria-label', t('lightbox.group'));
+  }
+
   function show(i) {
-    index = (i + buttons.length) % buttons.length;
-    const btn = buttons[index];
-    const thumb = btn.querySelector('img');
-    img.src = btn.dataset.full;
-    img.width = btn.dataset.fullW;
-    img.height = btn.dataset.fullH;
-    img.alt = thumb.alt;
-    caption.textContent = btn.closest('figure').querySelector('figcaption').textContent;
+    index = (i + slides.length) % slides.length;
+    const s = slides[index];
+    img.src = s.el.dataset.full;
+    img.width = s.el.dataset.fullW;
+    img.height = s.el.dataset.fullH;
+    img.alt = altOf(s.el);
+    title.textContent = s.work.querySelector('figcaption').textContent;
+    count.textContent = s.size > 1 ? `${s.pos + 1} / ${s.size}` : '';
+    renderThumbs(s);
     // warm the neighbours so arrows feel instant
-    [index - 1, index + 1].forEach(n => { new Image().src = buttons[(n + buttons.length) % buttons.length].dataset.full; });
+    [index - 1, index + 1].forEach(n => { new Image().src = slides[(n + slides.length) % slides.length].el.dataset.full; });
   }
 
   function open(i) {
@@ -33,7 +78,7 @@
     document.dispatchEvent(new CustomEvent('pinata:toplayer', { detail: { host: dialog } }));
   }
 
-  buttons.forEach((btn, i) => btn.addEventListener('click', () => open(i)));
+  works.forEach(work => work.querySelector('.work__open').addEventListener('click', () => open(firstOf.get(work))));
   dialog.addEventListener('close', () => {
     root.classList.remove('lightbox-open');
     document.dispatchEvent(new CustomEvent('pinata:toplayer', { detail: { host: null } }));
@@ -70,6 +115,16 @@
   });
   dialog.addEventListener('pointercancel', () => { startX = null; });
 
-  // keep the caption in sync if the language changes while the lightbox is open
+  // keep caption, alt text and labels in sync if the language changes while the lightbox is open
   document.addEventListener('pinata:languagechange', () => { if (dialog.open) show(index); });
+
+  // gentle fade-up as tiles scroll into view (skipped for reduced motion)
+  const grid = document.querySelector('.works');
+  if (grid && 'IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+    }), { rootMargin: '0px 0px -8% 0px' });
+    grid.classList.add('reveal-ready');
+    works.forEach(w => io.observe(w));
+  }
 })();

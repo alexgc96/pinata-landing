@@ -61,7 +61,7 @@ Pages: `index.html` (landing), `portafolio.html` (photo portfolio + lightbox), a
 ## Image asset conventions
 
 - Dark originals in `img/`; light copies in `img/light/` (cream → `#2A2A2D`).
-- Portfolio photos use responsive sizes: `name-480.webp`, `name-960.webp`, `name-full.webp`, with srcset/sizes and `data-full*` on the opener button.
+- Portfolio photos use responsive sizes: `name-480.webp` (4:5 crop for tiles/thumbs), `name-960.webp`, `name-full.webp` (uncropped, max 1800px), with srcset/sizes and `data-full*`/`data-thumb` on the opener button. One `.work` per piñata: extra angles are hidden `.work__angle` spans (`data-full*`, `data-thumb`, `data-alt` + `data-i18n-attr="data-alt:portfolio.<slug>.<n>.alt"`); the lightbox steps through them. Keys are `portfolio.<slug>.title` / `.<n>.alt`. Strip EXIF when exporting.
 - Art is served as static files; paths are relative, so pages work from any subpath only as long as relative links stay intact (GitHub Pages serves from `/pinata-landing/`).
 
 ## Gotchas
