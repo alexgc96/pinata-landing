@@ -10,5 +10,7 @@ window.PinataStrings.es = {
   'pop.4': '¡Ole!',
   'pop.5': '¡Más fuerte!',
   'pop.6': '¡Otra!',
-  'pop.burst': '¡Fiesta!'
+  'pop.burst': '¡Fiesta!',
+  'lightbox.photo': 'Foto',
+  'lightbox.group': 'Fotos de esta piñata'
 };

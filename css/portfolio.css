@@ -8,37 +8,73 @@
 }
 
 /* ---------- Grid ---------- */
+/* One tile per piñata; extra angles live in the lightbox. Desktop: 4 columns with a
+   2x2 feature tile and one wide tile; below 1000px: 2 columns, feature and wide span both. */
 
 .works {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 40px 32px;
 }
 
-.work { margin: 0; min-width: 0; }
+.work {
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.work--feature { grid-column: span 2; grid-row: span 2; }
+.work--wide { grid-column: span 2; }
 
 .work__open {
+  position: relative;
   display: block;
   width: 100%;
+  aspect-ratio: 4 / 5;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--stripe);
   overflow: hidden;
   cursor: zoom-in;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.work__open:hover { border-color: var(--ink); }
+.work--feature .work__open { flex: 1 1 0; min-height: 0; aspect-ratio: auto; }
+.work--wide .work__open { aspect-ratio: 8 / 5; }
+
+/* paper-layer lift on hover, in the accent colour */
+.work__open:hover {
+  border-color: var(--ink);
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--accent);
+}
 .work__open:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 .work__open img {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 5;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 .work__open:hover img { transform: scale(1.03); }
+
+/* "3 fotos" tag on piñatas that have more than one angle */
+.work__count {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 4px 11px 5px;
+  border-radius: 999px;
+  background: var(--header-bg-scrolled);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(6px);
+}
+.work__count b { font-weight: 600; }
 
 .work figcaption {
   margin-top: 14px;
@@ -49,15 +85,25 @@
   color: var(--muted);
 }
 
+/* gentle reveal while scrolling (class added by gallery.js) */
+.reveal-ready .work {
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.reveal-ready .work:not(.is-visible) { opacity: 0; transform: translateY(18px); }
+
 /* Current page marker in the nav */
 .nav__link.is-current { color: var(--ink); }
 
-@media (max-width: 899px) {
+@media (max-width: 999px) {
   .works { grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+  .work--feature .work__open { flex: none; aspect-ratio: 5 / 6; }
+  .work--feature { grid-row: auto; }
 }
 @media (max-width: 640px) {
   .portfolio__lead { margin: -16px 0 36px; font-size: 17px; }
   .work figcaption { font-size: 17px; margin-top: 10px; }
+  .work__count { right: 6px; bottom: 6px; font-size: 11px; padding: 3px 9px 4px; }
+  .work__open:hover { transform: none; box-shadow: none; }
 }
 
 /* ---------- Lightbox ---------- */
@@ -103,14 +149,53 @@ html.lightbox-open { overflow: hidden; }
   background: var(--bg);
 }
 .lightbox__caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  color: #f4f1ea;
+  text-align: center;
+}
+.lightbox__title {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 300;
   font-size: 20px;
   line-height: 1.2;
-  color: #f4f1ea;
-  text-align: center;
 }
+.lightbox__count {
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: rgba(244, 241, 234, 0.6);
+}
+
+/* angles of the current piñata */
+.lightbox__thumbs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lightbox__thumbs[hidden] { display: none; }
+.lightbox__thumb {
+  display: block;
+  padding: 0;
+  border: 1px solid rgba(244, 241, 234, 0.3);
+  border-radius: 3px;
+  background: none;
+  overflow: hidden;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.15s ease, border-color 0.15s ease;
+}
+.lightbox__thumb img { width: 44px; height: 55px; object-fit: cover; }
+.lightbox__thumb:hover { opacity: 1; }
+.lightbox__thumb[aria-current="true"] { opacity: 1; border-color: #f4f1ea; }
+.lightbox__thumb:focus-visible { outline: 2px solid #f4f1ea; outline-offset: 2px; }
+.lightbox__figure.has-thumbs .lightbox__img { max-height: calc(100% - 120px); }
 
 .lightbox__btn {
   position: absolute;
@@ -136,7 +221,7 @@ html.lightbox-open { overflow: hidden; }
 
 @media (max-width: 640px) {
   .lightbox__figure { padding: 64px 12px 20px; }
-  .lightbox__caption { font-size: 17px; }
+  .lightbox__title { font-size: 17px; }
   /* thumb-reach: arrows sit under the photo, swipe also works */
   .lightbox__prev, .lightbox__next { top: auto; bottom: 14px; transform: none; width: 44px; height: 44px; }
   .lightbox__prev { left: 14px; }
@@ -145,6 +230,6 @@ html.lightbox-open { overflow: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .work__open img { transition: none; }
-  .work__open:hover img { transform: none; }
+  .work__open, .work__open img { transition: none; }
+  .work__open:hover, .work__open:hover img { transform: none; }
 }
