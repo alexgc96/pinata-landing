@@ -29,6 +29,7 @@
   const altOf = el => (el.matches('button') ? el.querySelector('img').alt : el.dataset.alt);
 
   let index = 0;
+  let loadToken = 0;
 
   function renderThumbs(s) {
     thumbs.replaceChildren();
@@ -46,8 +47,8 @@
       const im = document.createElement('img');
       im.src = target.el.dataset.thumb;
       im.alt = '';
-      im.width = 44;
-      im.height = 55;
+      im.width = 52;
+      im.height = 65;
       b.appendChild(im);
       b.addEventListener('click', () => show(s.first + i));
       li.appendChild(b);
@@ -56,13 +57,32 @@
     thumbs.setAttribute('aria-label', t('lightbox.group'));
   }
 
-  function show(i) {
+  // dir: 1 = next, -1 = previous, 0 = no slide (opening, thumb click, language change)
+  function show(i, dir = 0) {
     index = (i + slides.length) % slides.length;
     const s = slides[index];
-    img.src = s.el.dataset.full;
+    const token = ++loadToken;
+    const full = s.el.dataset.full;
     img.width = s.el.dataset.fullW;
     img.height = s.el.dataset.fullH;
     img.alt = altOf(s.el);
+    if (img.getAttribute('src') !== full) {
+      // show the (already small) thumb at once, swap in the full photo when it is ready
+      img.classList.add('is-loading');
+      img.src = s.el.dataset.thumb;
+      const big = new Image();
+      big.onload = big.onerror = () => {
+        if (token !== loadToken) return; // the user already moved on
+        img.src = full;
+        img.classList.remove('is-loading');
+      };
+      big.src = full;
+    }
+    img.classList.remove('slide-next', 'slide-prev');
+    if (dir) {
+      void img.offsetWidth; // restart the animation
+      img.classList.add(dir > 0 ? 'slide-next' : 'slide-prev');
+    }
     title.textContent = s.work.querySelector('figcaption').textContent;
     count.textContent = s.size > 1 ? `${s.pos + 1} / ${s.size}` : '';
     renderThumbs(s);
@@ -78,15 +98,19 @@
     document.dispatchEvent(new CustomEvent('pinata:toplayer', { detail: { host: dialog } }));
   }
 
-  works.forEach(work => work.querySelector('.work__open').addEventListener('click', () => open(firstOf.get(work))));
+  works.forEach(work => {
+    const btn = work.querySelector('.work__open');
+    btn.setAttribute('aria-haspopup', 'dialog');
+    btn.addEventListener('click', () => open(firstOf.get(work)));
+  });
   dialog.addEventListener('close', () => {
     root.classList.remove('lightbox-open');
     document.dispatchEvent(new CustomEvent('pinata:toplayer', { detail: { host: null } }));
   });
 
   dialog.querySelector('.lightbox__close').addEventListener('click', () => dialog.close());
-  dialog.querySelector('.lightbox__prev').addEventListener('click', () => show(index - 1));
-  dialog.querySelector('.lightbox__next').addEventListener('click', () => show(index + 1));
+  dialog.querySelector('.lightbox__prev').addEventListener('click', () => show(index - 1, -1));
+  dialog.querySelector('.lightbox__next').addEventListener('click', () => show(index + 1, 1));
 
   // click on the dark backdrop (outside the photo and buttons) closes
   dialog.addEventListener('click', e => {
@@ -95,8 +119,10 @@
   });
 
   dialog.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1, -1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1, 1); }
+    if (e.key === 'Home') { e.preventDefault(); show(0); }
+    if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
   });
 
   // horizontal swipe on touch screens
@@ -110,7 +136,7 @@
     if (Math.abs(dx) > 50) {
       swiped = true; // the click that follows a swipe must not close the backdrop
       setTimeout(() => { swiped = false; }, 0);
-      show(index + (dx < 0 ? 1 : -1));
+      show(index + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
     }
   });
   dialog.addEventListener('pointercancel', () => { startX = null; });
@@ -125,6 +151,6 @@
       if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
     }), { rootMargin: '0px 0px -8% 0px' });
     grid.classList.add('reveal-ready');
-    works.forEach(w => io.observe(w));
+    works.forEach((w, n) => { w.style.setProperty('--stagger', `${(n % 4) * 70}ms`); io.observe(w); });
   }
 })();
