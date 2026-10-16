@@ -59,6 +59,14 @@
 }
 .work__open:hover img { transform: scale(1.03); }
 
+/* transparent cutout cover: a warm glow behind the piñata and a soft contact shadow */
+.work--cutout .work__open {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(245, 184, 46, 0.30), transparent 64%),
+    var(--stripe);
+}
+.work--cutout .work__open img { filter: drop-shadow(0 10px 12px rgba(10, 10, 11, 0.22)); }
+
 /* "3 fotos" tag on piñatas that have more than one angle */
 .work__count {
   position: absolute;
@@ -191,6 +199,7 @@ html.lightbox-open { overflow: hidden; }
   cursor: pointer;
   transition: opacity 0.15s ease, border-color 0.15s ease;
 }
+.lightbox__thumb { background: rgba(244, 241, 234, 0.08); }
 .lightbox__thumb img { width: 44px; height: 55px; object-fit: cover; }
 .lightbox__thumb:hover { opacity: 1; }
 .lightbox__thumb[aria-current="true"] { opacity: 1; border-color: #f4f1ea; }
