@@ -28,6 +28,7 @@ Pages: `index.html` (landing), `portafolio.html` (photo portfolio + lightbox), a
 - `js/party-cursor.js` — custom cursor, piñata hero interaction, confetti
 - `js/gallery.js` — portfolio lightbox (native `<dialog>`); only loaded on `portafolio.html`
 - `img/`, `img/light/` (theme variants), `img/portfolio/` (photo sizes)
+- `favicon.svg` (adapts stroke to the browser's dark scheme), `favicon.ico` (16/32/48), `apple-touch-icon.png` (180, cream background) at the root; every page links all three in `<head>`
 
 ## Load order (do not break)
 
