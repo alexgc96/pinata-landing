@@ -479,7 +479,6 @@ ol { list-style: none; }
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 90px; /* room for two rows so single-price cards line up with the rest */
 }
 .price-list__row {
   display: flex;
@@ -686,9 +685,13 @@ ol { list-style: none; }
 }
 
 /* price cards: 3 columns, the character card spans 2; 2 columns on tablets */
-.product--wide .product__art { height: 340px; }
+.product--wide .product__art { height: 300px; }
 
 @media (min-width: 901px) {
+  /* bottom row: the mini card's picture takes up the slack so no gap opens under its price.
+     contain: size keeps the picture's own size out of the row-height calculation */
+  .product--fill .product__art { height: auto; flex: 1 0 300px; contain: size; }
+  .product--wide .product__art { height: 340px; }
   .product--wide .product__body {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
