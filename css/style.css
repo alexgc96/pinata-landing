@@ -688,16 +688,17 @@ ol { list-style: none; }
 .product--wide .product__art { height: 300px; }
 
 @media (min-width: 901px) {
-  /* cards in a row share a height: the picture takes up the slack so no gap opens under the prices.
+  /* bottom row: the mini card's picture takes up the slack so no gap opens under its price.
      contain: size keeps the picture's own size out of the row-height calculation */
-  .product__art { height: auto; flex: 1 0 300px; contain: size; }
-  .product--wide .product__art { flex-basis: 340px; }
+  .product--fill .product__art { height: auto; flex: 1 0 300px; contain: size; }
+  .product--wide .product__art { height: 340px; }
   .product--wide .product__body {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas: "name price" "desc price" "foot foot";
     grid-template-rows: auto 1fr auto;
     gap: 0 48px;
+    flex: 1;
   }
   .product--wide .product__name { grid-area: name; margin-top: 0; }
   .product--wide .product__desc { grid-area: desc; margin-top: 12px; }
