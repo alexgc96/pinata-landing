@@ -58,8 +58,6 @@ body.party-on .theme-toggle { cursor: none; }
 :root:not([data-theme="dark"]) img[src$="img/logo-mark.svg"] { content: url("../img/light/logo-mark.svg"); }
 :root:not([data-theme="dark"]) img[src$="img/pinata-cta.svg"] { content: url("../img/light/pinata-cta.svg"); }
 :root:not([data-theme="dark"]) img[src$="img/pinata-hero.svg"] { content: url("../img/light/pinata-hero.svg"); }
-:root:not([data-theme="dark"]) img[src$="img/product-estrella.svg"] { content: url("../img/light/product-estrella.svg"); }
-:root:not([data-theme="dark"]) img[src$="img/product-flecos.svg"] { content: url("../img/light/product-flecos.svg"); }
 
 /* the inline "A medida" star uses hard-coded cream strokes/text */
 :root:not([data-theme="dark"]) .product__art--inline [stroke="#F4F1EA"] { stroke: #2A2A2D; }

@@ -63,6 +63,7 @@ pinata-landing/
 ├── css/
 │   ├── style.css
 │   ├── party-cursor.css
+│   ├── print.css    (price-list poster, see below)
 │   └── lang-switch.css
 ├── js/
 │   ├── main.js
@@ -76,11 +77,22 @@ pinata-landing/
     ├── flecos.svg
     ├── pinata-hero.svg
     ├── pinata-cta.svg
-    ├── product-estrella.svg
-    └── product-flecos.svg
+    ├── pinatas/     (transparent cut-outs for the price cards)
+    └── portfolio/   (photo sizes)
 ```
 
 ## Notes
 
 - The **preview banner** and `noindex` meta tag are intentional and permanent for this repo.
-- WhatsApp CTA, prices, photos, and city/email in the footer are placeholder content.
+- WhatsApp CTA and city/email in the footer are still placeholder content. Prices on the landing are real (excl. VAT, shown as "Precios + IVA").
+
+## Price list as PDF
+
+`css/print.css` turns the "Nuestras piñatas" section into a single 4:5 poster (1080 × 1350 px) when printed, always in the light palette and in the page's current language. To render it to PDF (and optionally PNG) for both languages:
+
+```
+python3 -m pip install playwright      # once (plus `python3 -m playwright install chromium` if needed)
+python3 tools/export-prices-pdf.py --png
+```
+
+Output goes to `pdf-out/` (git-ignored). `tools/` is not published to Pages.
