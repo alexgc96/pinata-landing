@@ -423,8 +423,6 @@ ol { list-style: none; }
   object-fit: cover;
   object-position: 50% 78%; /* the piñatas sit in the lower half of these studio shots */
 }
-.product__art--duo { gap: 2px; }
-.product__art--duo img { width: 50%; }
 
 /* transparent cut-outs: same warm glow + contact shadow as the portfolio covers */
 .product__art--cutouts {
