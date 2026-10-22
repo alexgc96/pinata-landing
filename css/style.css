@@ -368,9 +368,28 @@ ol { list-style: none; }
 
 /* Products */
 
+#pinatas .section__title { margin-bottom: 20px; }
+
+.products__note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 48px;
+  font-size: 15px;
+}
+.products__vat {
+  padding: 5px 14px 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 40px;
 }
 
@@ -395,6 +414,38 @@ ol { list-style: none; }
   height: 240px;
 }
 
+.product--wide { grid-column: span 2; }
+
+.product__art--photo { padding: 0; }
+.product__art--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 78%; /* the piñatas sit in the lower half of these studio shots */
+}
+.product__art--duo { gap: 2px; }
+.product__art--duo img { width: 50%; }
+
+/* transparent cut-outs: same warm glow + contact shadow as the portfolio covers */
+.product__art--cutouts {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(245, 184, 46, 0.30), transparent 64%),
+    var(--stripe);
+  align-items: flex-end;
+  padding: 24px 16px 20px;
+}
+.product__art--cutouts .cutout {
+  width: auto;
+  max-width: none;
+  filter: drop-shadow(0 10px 12px rgba(10, 10, 11, 0.22));
+}
+.product__art--cutouts .cutout--skate { height: 80%; margin-right: -3%; }
+.product__art--cutouts .cutout--burro { height: 100%; position: relative; z-index: 1; }
+.product__art--cutouts .cutout--bee   { height: 90%; margin-left: -3%; }
+
+.product__body { display: flex; flex-direction: column; gap: 16px; }
+.product__body .product__desc { flex: 0 1 auto; }
+
 .product__name {
   margin-top: 8px;
   font-family: var(--serif);
@@ -413,13 +464,82 @@ ol { list-style: none; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
   font-weight: 500;
   font-size: 15px;
   padding-top: 14px;
   border-top: 1px solid var(--line);
 }
+
+/* Price rows */
+
+.price-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 90px; /* room for two rows so single-price cards line up with the rest */
+}
+.price-list__row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.price-list__label {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 500;
+}
+.price-list__label small {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+.price-list__label::after {
+  content: "";
+  flex: 1;
+  order: 3;
+  border-bottom: 1px dotted var(--line);
+  transform: translateY(-4px);
+}
+.price-list__amount {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* "A medida" strip under the price cards */
+
+.custom {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px 32px;
+  margin-top: 48px;
+  padding: 20px 32px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.custom__art svg { width: 96px; height: 96px; display: block; }
+.custom__copy .product__name { margin-top: 0; }
+.custom__copy .product__desc { margin-top: 6px; }
+.custom__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* Poster pieces: only used when printing / exporting the price list (css/print.css) */
+.poster-head,
+.poster-foot { display: none; }
 
 /* How to order */
 
@@ -565,9 +685,42 @@ ol { list-style: none; }
   gap: 8px 24px;
 }
 
+/* price cards: 3 columns, the character card spans 2; 2 columns on tablets */
+.product--wide .product__art { height: 340px; }
+
+@media (min-width: 901px) {
+  .product--wide .product__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "name price" "desc price" "foot foot";
+    grid-template-rows: auto 1fr auto;
+    gap: 0 48px;
+    flex: 1;
+  }
+  .product--wide .product__name { grid-area: name; margin-top: 0; }
+  .product--wide .product__desc { grid-area: desc; margin-top: 12px; }
+  .product--wide .price-list { grid-area: price; align-self: start; }
+  .product--wide .product__foot { grid-area: foot; margin-top: 16px; }
+}
+
+@media (max-width: 900px) {
+  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+}
+
 /* ---------- Small screens ---------- */
 
 @media (max-width: 640px) {
+  .products { grid-template-columns: minmax(0, 1fr); }
+  .product--wide { grid-column: auto; }
+  .price-list { min-height: 0; }
+  .product--wide .product__art { height: 220px; padding: 16px 10px 14px; }
+  .product__art--cutouts .cutout { height: auto; min-width: 0; }
+  .product__art--cutouts .cutout--skate { width: 25%; }
+  .product__art--cutouts .cutout--burro { width: 40%; }
+  .product__art--cutouts .cutout--bee   { width: 40%; }
+  .custom { grid-template-columns: 1fr; padding: 24px; gap: 16px; }
+  .custom__foot { align-items: flex-start; }
+
   :root { --gutter: 24px; }
 
   .nav-toggle {

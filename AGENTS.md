@@ -20,6 +20,7 @@ Pages: `index.html` (landing), `portafolio.html` (photo portfolio + lightbox), a
 - `css/style.css` — tokens/palettes (`:root`, `:root[data-theme="dark"]`), layout
 - `css/theme.css` — theme toggle styles + illustration swap rules
 - `css/fonts.css` — `@font-face` rules for self-hosted Fraunces + Inter (files in `fonts/`, latin + latin-ext only)
+- `css/print.css` — print-only: turns `#pinatas` into a 1080×1350 price-list poster (`.poster-head` / `.poster-foot` are hidden on screen); `tools/export-prices-pdf.py` (Playwright) renders it to PDF/PNG in ES + EU
 - `css/party-cursor.css`, `css/lang-switch.css`, `css/portfolio.css`, `css/legal.css` (legal pages only)
 - `js/theme.js` — synchronous head script: applies saved theme before paint, builds toggle button
 - `js/main.js` — sticky header height sync, mobile nav toggle
@@ -27,7 +28,7 @@ Pages: `index.html` (landing), `portafolio.html` (photo portfolio + lightbox), a
 - `js/lang/es.js`, `js/lang/eu.js` — string maps on `window.PinataStrings`
 - `js/party-cursor.js` — custom cursor, piñata hero interaction, confetti
 - `js/gallery.js` — portfolio lightbox (native `<dialog>`); only loaded on `portafolio.html`
-- `img/`, `img/light/` (theme variants), `img/portfolio/` (photo sizes)
+- `img/`, `img/light/` (theme variants), `img/portfolio/` (photo sizes), `img/pinatas/` (transparent WebP cut-outs for the character price card; made with the rembg/BiRefNet flow, EXIF-free)
 - `favicon.svg` (adapts stroke to the browser's dark scheme), `favicon.ico` (16/32/48), `apple-touch-icon.png` (180, cream background) at the root; every page links all three in `<head>`
 
 ## Load order (do not break)
@@ -71,7 +72,7 @@ Pages: `index.html` (landing), `portafolio.html` (photo portfolio + lightbox), a
 - Theme script must stay synchronous in `<head>`; moving it or deferring causes a flash and wrong early theme.
 - `js/gallery.js` is not loaded on `index.html`; including it there would query-miss and no-op, but don't assume shared initialization.
 - No tests exist; verify changes by opening both pages in a browser (light + dark, ES + EU).
-- WhatsApp CTA, prices, photos, footer city/email are placeholders; `assets` are not production content.
+- Prices (`Nuestras piñatas`, + IVA) are real and live in the markup (`.price-list`), not in i18n; the price-list poster reuses the same markup, so change a price once. WhatsApp CTA and footer city/email are still placeholders.
 - Git branch workflow uses `feat/*` feature branches merged via PRs (see recent history); deploy only on `main`.
 - Keep markup changes synced with i18n keys; new user-visible copy needs both `data-i18n` and Basque entries (or it falls back to Spanish).
 - Common mistake: editing without checking dark-mode counterpart of SVGs.

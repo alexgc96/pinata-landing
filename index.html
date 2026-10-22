@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/party-cursor.css" />
   <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/print.css" media="print" />
   <meta name="theme-color" content="#f4f1ea" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon.ico" sizes="48x48" />
@@ -84,43 +85,115 @@
     <!-- PRODUCTOS -->
     <section id="pinatas" class="section">
       <div class="wrap">
+
+        <!-- Poster header: only shown when printing / exporting the price list as PDF (css/print.css) -->
+        <div class="poster-head" aria-hidden="true">
+          <img class="poster-head__mark" src="img/logo-mark.svg" width="56" height="56" alt="" />
+          <span class="poster-head__brand" lang="es">Piñatería <em>Mexicana</em></span>
+        </div>
+
         <p class="eyebrow"><span class="dot dot--pink"></span><span data-i18n="products.eyebrow">Colección</span></p>
         <h2 class="section__title" data-i18n="products.title">Nuestras piñatas</h2>
+        <p class="products__note">
+          <span class="products__vat" data-i18n="products.vat">Precios + IVA</span>
+          <span class="muted" data-i18n="products.approx">Medidas aproximadas</span>
+        </p>
+
         <div class="products">
 
           <article class="product">
-            <div class="product__art"><img src="img/product-estrella.svg" width="240" height="240" data-i18n-attr="alt:product.star.alt" alt="Ilustración de una piñata de estrella de siete picos" /></div>
-            <h3 class="product__name" data-i18n="product.star.name">Estrella clásica</h3>
-            <p class="product__desc" data-i18n="product.star.desc">La de siete picos de toda la vida, en los colores que tú elijas.</p>
+            <div class="product__art product__art--photo"><img src="img/portfolio/uno-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Piñata roja con forma del número 1, con una flor blanca y hojas verdes, en una fiesta con globos rojos, banderines y un fondo rosa y amarillo." data-i18n-attr="alt:portfolio.uno.1.alt" /></div>
+            <h3 class="product__name" data-i18n="price.one.name">Número de una cifra</h3>
+            <p class="product__desc" data-i18n="price.one.desc">Del 0 al 9, con los flecos y los colores que elijas.</p>
+            <ul class="price-list">
+              <li class="price-list__row"><span class="price-list__label"><span data-i18n="price.large">Grande</span> <small>50–55 cm</small></span><span class="price-list__amount">65 €</span></li>
+              <li class="price-list__row"><span class="price-list__label"><span data-i18n="price.small">Pequeño</span> <small>20 cm</small></span><span class="price-list__amount">45 €</span></li>
+            </ul>
             <div class="product__foot">
-              <span class="muted" data-i18n="price.from">Desde [PRECIO]</span>
               <a class="lnk lnk--underline" href="#contacto" data-i18n="product.want">Lo quiero →</a>
             </div>
           </article>
 
           <article class="product">
-            <div class="product__art"><img src="img/product-flecos.svg" width="240" height="240" data-i18n-attr="alt:product.fringe.alt" alt="Ilustración de una piñata redonda de flecos" /></div>
-            <h3 class="product__name" data-i18n="product.fringe.name">Redonda de flecos</h3>
-            <p class="product__desc" data-i18n="product.fringe.desc">Capas de papel de seda cortadas a mano, una por una.</p>
+            <div class="product__art product__art--photo"><img src="img/portfolio/cincuenta-1-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Primer plano de la piñata plateada con forma del número 50, de flecos metalizados, con hilos plateados y globos alargados alrededor." data-i18n-attr="alt:portfolio.cincuenta.1.alt" /></div>
+            <h3 class="product__name" data-i18n="price.two.name">Número de dos cifras</h3>
+            <p class="product__desc" data-i18n="price.two.desc">Para los cumpleaños redondos: 18, 30, 50…</p>
+            <ul class="price-list">
+              <li class="price-list__row"><span class="price-list__label"><span data-i18n="price.large">Grande</span> <small>50–55 cm</small></span><span class="price-list__amount">85 €</span></li>
+            </ul>
             <div class="product__foot">
-              <span class="muted" data-i18n="price.from">Desde [PRECIO]</span>
               <a class="lnk lnk--underline" href="#contacto" data-i18n="product.want">Lo quiero →</a>
             </div>
           </article>
 
-          <article id="medida" class="product">
-            <div class="product__art product__art--inline">
-              <svg viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="112" fill="none" stroke="#F4F1EA" stroke-opacity=".5" stroke-width="2" stroke-dasharray="1.5 11" stroke-linecap="round"></circle><path d="M150 74 l7 19 l19 7 l-19 7 l-7 19 l-7 -19 l-19 -7 l19 -7 Z" fill="#1FA79A" stroke="#F4F1EA" stroke-width="2.5" stroke-linejoin="round"></path><path d="M82 112 l4 11 l11 4 l-11 4 l-4 11 l-4 -11 l-11 -4 l11 -4 Z" fill="none" stroke="#F4F1EA" stroke-width="2" stroke-linejoin="round"></path><path d="M220 128 l4 11 l11 4 l-11 4 l-4 11 l-4 -11 l-11 -4 l11 -4 Z" fill="none" stroke="#F4F1EA" stroke-width="2" stroke-linejoin="round"></path><text data-i18n="product.custom.art" x="150" y="214" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-style="italic" font-weight="300" font-size="32" fill="#F4F1EA">tu idea aquí</text></svg>
+          <article class="product">
+            <div class="product__art product__art--photo product__art--duo">
+              <img src="img/portfolio/boom-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Piñata roja de superhéroe con un cartel «¡BOOM!», sobre el suelo de un estudio amarillo, bajo tres globos azul, rojo con lunares y verde." data-i18n-attr="alt:portfolio.boom.1.alt" />
+              <img src="img/portfolio/arcoiris-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Piñata con forma de arcoíris, con flecos morados, naranjas, amarillos, verdes y azules, sobre una mesa amarilla con globos alargados y confeti." data-i18n-attr="alt:portfolio.arcoiris.1.alt" />
             </div>
-            <h3 class="product__name" data-i18n="product.custom.name">A medida</h3>
-            <p class="product__desc" data-i18n="product.custom.desc">Cuéntanos tu idea (un personaje, un número, una mascota) y la dibujamos juntos.</p>
+            <h3 class="product__name" data-i18n="price.simple.name">Forma simple</h3>
+            <p class="product__desc" data-i18n="price.simple.desc">En formato caja o en volumen: un arcoíris, una explosión de cómic…</p>
+            <ul class="price-list">
+              <li class="price-list__row"><span class="price-list__label"><span data-i18n="price.large">Grande</span> <small>50–55 cm</small></span><span class="price-list__amount">65 €</span></li>
+              <li class="price-list__row"><span class="price-list__label"><span data-i18n="price.small">Pequeño</span> <small>20 cm</small></span><span class="price-list__amount">45 €</span></li>
+            </ul>
             <div class="product__foot">
-              <span class="muted" data-i18n="product.custom.note">Presupuesto sin compromiso</span>
-              <a class="lnk lnk--underline" href="#contacto" data-i18n="product.custom.cta">Cuéntanos →</a>
+              <a class="lnk lnk--underline" href="#contacto" data-i18n="product.want">Lo quiero →</a>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product__art product__art--photo"><img src="img/portfolio/abejitas-1-480.webp" width="480" height="600" loading="lazy" decoding="async" alt="Tres piñatas de abeja pequeñas sobre rodajas de tronco, con rayas amarillas y negras, alas blancas y antenas rizadas." data-i18n-attr="alt:portfolio.abejitas.1.alt" /></div>
+            <h3 class="product__name" data-i18n="price.mini.name">Mini formas simples</h3>
+            <p class="product__desc" data-i18n="price.mini.desc">Cajitas pequeñas para los detalles de la fiesta. El mismo precio por unidad, pidas una o un pack.</p>
+            <ul class="price-list">
+              <li class="price-list__row"><span class="price-list__label"><span data-i18n="price.unit">Unidad</span> <small>12 cm</small></span><span class="price-list__amount">15 €</span></li>
+            </ul>
+            <div class="product__foot">
+              <a class="lnk lnk--underline" href="#contacto" data-i18n="product.want">Lo quiero →</a>
+            </div>
+          </article>
+
+          <article class="product product--wide">
+            <div class="product__art product__art--cutouts">
+              <img class="cutout cutout--skate" src="img/pinatas/personaje-patin.webp" width="255" height="394" loading="lazy" decoding="async" alt="Piñata con forma de patín de ruedas blanco, con un lazo rosa y un arcoíris en el lateral." data-i18n-attr="alt:price.char.skate.alt" />
+              <img class="cutout cutout--burro" src="img/pinatas/personaje-burro.webp" width="489" height="560" loading="lazy" decoding="async" alt="Piñata de burro con flecos de todos los colores del arcoíris, hocico naranja y alforjas marrones con un paquete rojo." data-i18n-attr="alt:price.char.burro.alt" />
+              <img class="cutout cutout--bee" src="img/pinatas/personaje-abeja.webp" width="561" height="560" loading="lazy" decoding="async" alt="Piñata de abeja con la cara amarilla, una margarita en la cabeza, rayas negras, alas blancas y antenas rizadas." data-i18n-attr="alt:price.char.bee.alt" />
+            </div>
+            <div class="product__body">
+              <h3 class="product__name" data-i18n="price.char.name">Personaje y forma compleja</h3>
+              <p class="product__desc" data-i18n="price.char.desc">Animales, personajes y formas con todo su volumen, hechos a mano a partir de tu idea.</p>
+              <ul class="price-list">
+                <li class="price-list__row"><span class="price-list__label"><span data-i18n="price.large">Grande</span> <small>50–55 cm</small></span><span class="price-list__amount">75 €</span></li>
+              </ul>
+              <div class="product__foot">
+                <a class="lnk lnk--underline" href="#contacto" data-i18n="product.want">Lo quiero →</a>
+              </div>
             </div>
           </article>
 
         </div>
+
+        <div id="medida" class="custom">
+          <div class="product__art--inline custom__art">
+            <svg viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="112" fill="none" stroke="#F4F1EA" stroke-opacity=".5" stroke-width="2" stroke-dasharray="1.5 11" stroke-linecap="round"></circle><path d="M150 74 l7 19 l19 7 l-19 7 l-7 19 l-7 -19 l-19 -7 l19 -7 Z" fill="#1FA79A" stroke="#F4F1EA" stroke-width="2.5" stroke-linejoin="round"></path><path d="M82 112 l4 11 l11 4 l-11 4 l-4 11 l-4 -11 l-11 -4 l11 -4 Z" fill="none" stroke="#F4F1EA" stroke-width="2" stroke-linejoin="round"></path><path d="M220 128 l4 11 l11 4 l-11 4 l-4 11 l-4 -11 l-11 -4 l11 -4 Z" fill="none" stroke="#F4F1EA" stroke-width="2" stroke-linejoin="round"></path><text data-i18n="product.custom.art" x="150" y="214" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-style="italic" font-weight="300" font-size="32" fill="#F4F1EA">tu idea aquí</text></svg>
+          </div>
+          <div class="custom__copy">
+            <h3 class="product__name" data-i18n="product.custom.name">A medida</h3>
+            <p class="product__desc" data-i18n="product.custom.desc">Cuéntanos tu idea (un personaje, un número, una mascota) y la dibujamos juntos.</p>
+          </div>
+          <div class="custom__foot">
+            <span class="muted" data-i18n="product.custom.note">Presupuesto sin compromiso</span>
+            <a class="lnk lnk--underline" href="#contacto" data-i18n="product.custom.cta">Cuéntanos →</a>
+          </div>
+        </div>
+
+        <!-- Poster footer: print / PDF export only -->
+        <div class="poster-foot" aria-hidden="true">
+          <span class="poster-foot__contact"><span data-i18n="poster.whatsapp">Pide tu presupuesto por WhatsApp</span> · <strong>692 70 89 50</strong></span>
+          <span class="poster-foot__place">Bilbao</span>
+        </div>
+
       </div>
     </section>
 
