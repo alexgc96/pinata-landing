@@ -713,11 +713,12 @@ ol { list-style: none; }
   .products { grid-template-columns: minmax(0, 1fr); }
   .product--wide { grid-column: auto; }
   .price-list { min-height: 0; }
-  .product--wide .product__art { height: 220px; padding: 16px 10px 14px; }
-  .product__art--cutouts .cutout { height: auto; min-width: 0; }
-  .product__art--cutouts .cutout--skate { width: 25%; }
-  .product__art--cutouts .cutout--burro { width: 40%; }
-  .product__art--cutouts .cutout--bee   { width: 40%; }
+  /* two piñatas fit on a phone: skate and burro lead, left-aligned, and the bee peeks in from the right edge */
+  .product--wide .product__art { height: 250px; padding: 18px 0 16px 14px; justify-content: flex-start; }
+  .product__art--cutouts .cutout { flex: none; }
+  .product__art--cutouts .cutout--skate { height: 70%; width: auto; }
+  .product__art--cutouts .cutout--burro { height: 88%; width: auto; }
+  .product__art--cutouts .cutout--bee   { height: 82%; width: auto; flex: none; }
   .custom { grid-template-columns: 1fr; padding: 24px; gap: 16px; }
   .custom__foot { align-items: flex-start; }
 
