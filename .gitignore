@@ -30,3 +30,6 @@ build/
 
 # Local dev overrides
 *.local
+
+# Generated price-list PDFs (tools/export-prices-pdf.py)
+pdf-out/
